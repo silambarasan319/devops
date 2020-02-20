@@ -1,0 +1,5 @@
+---
+ user_name: admin2
+ password: $1$3rtpwV8d$gcqjS9BsJG5DManct8P7X0
+ state: present
+...

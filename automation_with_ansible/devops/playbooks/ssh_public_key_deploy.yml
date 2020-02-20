@@ -1,0 +1,15 @@
+---
+ - name: Public key is deployed to managed hosts for ansible management
+   hosts: all
+   vars:
+    user: admin
+   tasks:
+    
+    - name: Ensure key is in users's ~/.ssh/authorized_hosts
+      authorized_key:
+        user: '{{user}}'
+        state: present
+        key: '{{ item }}'
+      with_file:
+        - ~/.ssh/id_rsa.pub
+...

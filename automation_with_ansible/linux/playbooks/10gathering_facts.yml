@@ -1,0 +1,9 @@
+---
+ - name: Verify the gathered facts via ansible playbook 
+   hosts: servera
+   tasks:
+    
+    - name: Verify facts
+      debug:
+       var: ansible_facts
+...

@@ -1,0 +1,13 @@
+---
+ - name: Ensure "{{user_name}}" is "{{state}}" in chennai datacenter
+   hosts: chennai
+   vars_files:
+    - variables/variables.yml
+   tasks:
+
+    - name: Ensure "{{user_name}}" is "{{state}}"
+      user:
+        name: "{{user_name}}"
+        password: "{{password}}"
+        state: "{{state}}"
+...

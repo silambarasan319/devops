@@ -1,0 +1,36 @@
+---
+ - name: Configure autofs
+   hosts: linux
+   tasks:
+
+    - name: Install autofs software
+      yum:
+        name: autofs
+        state: present
+
+    - name: Start and enable autofs service
+      service:
+        name: autofs
+        state: started
+        enabled: yes
+
+    - name: Edit /etc/auto.master configuration file
+      lineinfile:
+        path: /etc/auto.master
+        line: "/mnt   /etc/sansbound.home"
+        state: present
+      notify: restart_autofs
+
+    - name: Edit /etc/sansbound.home configuration file
+      copy:
+        dest: /etc/sansbound.home
+        content: "share1  -ro,sync  servera:/share1"
+      notify: restart_autofs
+
+  handlers:
+
+    - name: restart_autofs
+      service:
+        name: autofs
+        state: restarted
+...

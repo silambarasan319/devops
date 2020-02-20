@@ -1,0 +1,10 @@
+---
+ - name: Creating a user in chennai datacenter
+   hosts: chennai
+   tasks:
+
+    - name: Create user
+      user:
+        name: devops
+        state: present
+...

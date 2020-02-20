@@ -1,0 +1,10 @@
+---
+ - name: Deleting a user in chennai datacenter
+   hosts: chennai
+   tasks:
+
+    - name: Delete user
+      user:
+        name: devops
+        state: absent
+...

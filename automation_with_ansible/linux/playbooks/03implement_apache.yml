@@ -1,0 +1,28 @@
+---
+ - name: Implement apache web server
+   hosts: chennai,mumbai
+   tasks:
+    
+    - name: Install httpd software
+      yum:
+        name: httpd
+        state: present
+
+    - name: Start and enable httpd service
+      service:
+        name: httpd
+        state: started
+        enabled: yes
+
+    - name: Place website content
+      copy:
+        content: '"{{ansible_hostname}}" is Managed by ansible'
+        dest: /var/www/html/index.html
+
+    - name: Allow http via firewall
+      firewalld:
+        service: http
+        state: enabled
+        immediate: yes
+        permanent: yes
+...

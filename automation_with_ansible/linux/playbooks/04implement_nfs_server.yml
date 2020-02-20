@@ -1,0 +1,39 @@
+---
+ - name: Implement nfs server
+   hosts: servera
+   tasks:
+    
+    - name: Install nfs software
+      yum:
+        name: nfs-utils
+        state: present
+
+    - name: Start and enable nfs service
+      service:
+        name: nfs-server
+        state: started
+        enabled: yes
+
+    - name: Allow nfs via firewall
+      firewalld:
+        service: nfs
+        state: enabled
+        immediate: yes
+        permanent: yes
+
+    - name: Create share directory
+      file:
+        path: /share1
+        state: directory
+
+    - name: Make nfs configuration
+      lineinfile:
+        path: /etc/exports
+        line: "/share1  172.25.250.0/24(ro)"
+        state: present
+
+    - name: Update the share
+      shell:
+        cmd: exportfs -r
+...
+

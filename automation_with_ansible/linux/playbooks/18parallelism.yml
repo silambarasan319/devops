@@ -1,0 +1,19 @@
+---
+ - name: Creating list of users in linux
+   hosts: linux
+   serial: 2
+   vars:
+    users:
+      - admin1
+      - admin2
+      - admin3
+      - admin4
+   tasks:
+
+    - name: Create user
+      user:
+        name: "{{item}}"
+        state: present
+      loop: "{{users}}"
+      when: ansible_distribution == "RedHat" or ansible_distribution == "CentOS" 
+...

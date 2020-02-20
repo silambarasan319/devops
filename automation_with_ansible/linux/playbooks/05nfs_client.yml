@@ -1,0 +1,43 @@
+---
+ - name: Mount nfs share
+   hosts: serverb
+   tasks:
+   
+    - name: Mount by making a configuration in /etc/fstab
+      mount:
+        src: servera:/share1
+        path: /mnt
+        fstype: nfs
+        state: mounted
+
+ - name: Configure autofs in mumbai servers
+   hosts: mumbai
+   tasks:
+
+    - name: Install autofs software
+      yum:
+        name: autofs
+        state: present
+
+    - name: Start and enable autofs service
+      service:
+        name: autofs
+        state: started
+        enabled: yes
+
+    - name: Edit /etc/auto.master configuration file
+      lineinfile:
+        path: /etc/auto.master
+        line: "/mnt   /etc/sansbound.home"
+        state: present
+
+    - name: Edit /etc/sansbound.home configuration file
+      copy:
+        dest: /etc/sansbound.home
+        content: "share1  -ro,sync  servera:/share1"
+
+    - name: Restart autofs
+      service:
+        name: autofs
+        state: restarted
+...

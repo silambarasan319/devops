@@ -1,0 +1,14 @@
+---
+ - name: Creating list of users in chennai datacenter
+   hosts: chennai
+   tasks:
+
+    - name: Create user
+      user:
+        name: "{{item}}"
+        state: present
+      loop:
+        - user1
+        - user2
+        - user3
+...

@@ -1,0 +1,23 @@
+---
+ - name: Implement apache in rhel server
+   hosts: mumbai
+   tasks:
+    
+    - name: Install apache and git software
+      yum:
+        name:
+          - httpd
+          - git
+        state: present
+
+    - name: Start and enable service
+      service:
+        name: httpd
+        state: started
+        enabled: yes
+
+    - name: Place website from git hub
+      git:
+        repo: https://github.com/jerrish/site.git
+        dest: /var/www/html
+...

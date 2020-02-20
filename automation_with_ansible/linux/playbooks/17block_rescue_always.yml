@@ -1,0 +1,27 @@
+---
+ - name: Demo of Block, Rescue and Always
+   hosts: 172.25.0.101
+   gather_facts: no
+   tasks:
+    
+    - block:
+        
+        - name: A
+          yum:
+            name: nopkg
+            state: present
+
+      rescue:
+        
+        - name: B
+          yum:
+            name: nopkg
+            state: present
+
+      always:
+        
+        - name: C
+          yum:
+            name: mariadb
+            state: present
+...

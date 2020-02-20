@@ -1,0 +1,6 @@
+---
+ - name: implement apache
+   import_playbook: 03implement_apache.yml
+
+ - name: implement nfs
+   import_playbook: 04implement_nfs_server.yml

@@ -1,0 +1,10 @@
+---
+ - name: Copy a local file or directory to managed node
+   hosts: mumbai
+   tasks:
+    
+    - name: Perform copy
+      copy:
+        src: /etc/hosts
+        dest: /tmp
+...

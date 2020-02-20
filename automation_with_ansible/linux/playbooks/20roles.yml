@@ -1,0 +1,6 @@
+---
+ - name: Include role
+   hosts: centos
+   roles:
+    - roles/geerlingguy.docker
+...

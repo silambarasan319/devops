@@ -1,0 +1,15 @@
+---
+ - name: Ensure "{{user_name}}" is "{{state}}" in chennai datacenter
+   hosts: chennai
+   vars:
+    user_name: admin1
+    password: $1$3rtpwV8d$gcqjS9BsJG5DManct8P7X0
+    state: present
+   tasks:
+
+    - name: Ensure "{{user_name}}" is "{{state}}"
+      user:
+        name: "{{user_name}}"
+        password: "{{password}}"
+        state: "{{state}}"
+...

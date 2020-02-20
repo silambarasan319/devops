@@ -1,0 +1,14 @@
+---
+ - name: Register the output of installation and verify
+   hosts: chennai
+   tasks:
+    
+    - name: Install httpd software
+      yum:
+        name: httpd
+        state: present
+      register: install_output
+
+    - debug: var=install_output
+...
+

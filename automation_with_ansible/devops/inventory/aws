@@ -1,0 +1,11 @@
+[chennai]
+10.0.0.10
+10.0.0.20
+
+[mumbai]
+10.0.0.30
+10.0.0.40
+
+[linux:children]
+chennai
+mumbai
